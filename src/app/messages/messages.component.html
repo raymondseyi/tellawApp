@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7 mx-auto">
+            <h4 class="text-center my-2">Requests</h4>
+           <div class="gradForRequests text-white my-2 rounded mx-2 px-2" *ngFor="let requests of reversedSlicedRequests,let i = index">
+                <span>{{requests.nameOfRequester}} sent you a request!</span><br>
+         
+                <span >Details: {{requests.description}}</span>
+                
+                <span class="float-right">{{requests.date}} </span><br>
+            <span> Amount: {{requests.amount|currency:"NGN":'symbol-narrow'}}</span>
+            <span class="float-right">{{requests.time}}</span>
+            <br>
+            <button class="btn btn-info mb-2" (click)="acceptRequest(i)">Accept</button>
+            <button class="btn btn-danger mx-2 mb-2" (click)="rejectRequest(i)">Reject</button>
+        </div> 
+        </div>
+    </div>
+</div>
+
+<!-- <span class=""> {{(history.date|timeago).includes('second')?"Just Now":history.date|timeago}} </span> -->
+        <!-- <div class="bg-info mx-2 px-2 rounded" *ngFor="let messages of userMessages">
+            {{messages.message}}!
+            <br>
+            <span>{{messages.date}}</span>
+            <span class="float-right">{{messages.time}}</span>
+        </div> -->
+        
+

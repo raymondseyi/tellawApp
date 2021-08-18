@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 gradback shadow-lg vh-100 d-none d-md-block">
+            <img class="imgsize" src="assets/svg/signin.svg" alt="">
+        </div>
+        <div class="col-md-6 gradback vh-100">
+            <div class="shadow rounded py-4 px-4 my-4">
+                <h3 class=" text-center ">Sign In</h3>
+                <form (submit)="signIn()" action="" [formGroup]="userForm">
+                    <input formControlName="email" class="form-control my-2" type="text" placeholder="Email">
+                    <input formControlName="password" class="form-control my-2" type="password" placeholder="Password">
+                    <button class="btn btn-info">Submit</button>
+                    <br>
+                    <a class="px-1 text-light" [routerLink]="['/sign-up']" routerLinkActive="router-link-active" >I don't have an account</a>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 gradback shadow-lg vh-100">
+            <img class="imgsize" src="assets/svg/signup.svg" alt="">
+        </div>
+        <div class="col-md-6 gradback">
+            <h3 class="text-center">Welcome to the Tellaw App</h3>
+           
+            <div class="shadow rounded py-4 px-4 my-4">
+                <h3 class="mx-auto text-center py-2">Sign Up</h3>
+                <form (submit)="signUp()" action="" [formGroup]="userForm">
+                <input formControlName="firstName" class="form-control my-2" type="text" placeholder="First Name">
+                <input formControlName="lastName" class="form-control my-2" type="text" placeholder="Last Name">
+                <input formControlName="phoneNumber" class="form-control my-2" type="text" placeholder="Phone Number">
+                <input formControlName="email" class="form-control my-2" type="text" placeholder="Email">
+                <input formControlName="password" class="form-control my-2" type="text" placeholder="Password">
+                <button class="btn btn-info">Submit</button>
+               
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div> -->

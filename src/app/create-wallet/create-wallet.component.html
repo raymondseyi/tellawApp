@@ -1,0 +1,7 @@
+<div>
+    <input type="text" class="form-control my-2" placeholder="Name of Wallet" [(ngModel)]="nameOfWallet">
+    <input type="text" class="form-control my-2" placeholder="Description of Wallet"  [(ngModel)]="descriptionOfWallet">
+    <input type="number" class="form-control my-2" placeholder="Target Amount" [(ngModel)]="targetOfWallet">
+    <button class="btn btn-success my-2 mx-2" (click)='createWallet()'>Create</button>
+    <button class="btn btn-danger my-2" (click)='cancelWallet()'>Cancel</button>
+</div>

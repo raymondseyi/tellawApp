@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.grad{
+    background:linear-gradient(to bottom right,rgb(8, 8, 138),rgb(233, 120, 139));
+  }
+  .grad2{
+    background:linear-gradient(to bottom right,rgb(233, 120, 139),rgb(8, 8, 138));
+  }
+  .spaced{
+    letter-spacing: 20px;
+    font-weight: 400;
+  }
+  .btnimgsize{
+    width: 40px;
+    height: 40px;
+  }
+  .gradback{
+    background:linear-gradient(to bottom right,rgba(8, 8, 138, 0.308)
+    ,rgba(233, 120, 139, 0.329));
+    }

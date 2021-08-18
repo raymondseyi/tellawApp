@@ -1,0 +1,119 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+ 
+    <p class="display-4 text-center">Wallets</p>
+    <button class="btn gradForRequests text-white" data-toggle="modal" data-target="#newWalletModal">Create A New Wallet</button>
+    <div class="row  my-3 text-white">
+        
+        <div class="col-md-4 my-3" *ngFor="let wallet of userWallets; let i =index ">
+            <div class="gradForRequests rounded py-2">
+                <div class="mx-2">
+                  <span>{{wallet.nameOfWallet}}</span>
+                  <span class="float-right">#{{wallet.walletId}}</span>
+                </div>
+                <div class="mx-2">
+                    Target Amount: {{wallet.targetOfWallet|currency:"NGN":'symbol-narrow'}}
+                </div>
+                <div class="mx-2">
+                    Wallet Amount: {{wallet.walletAmount|currency:"NGN":'symbol-narrow'}}
+                </div>
+                <button type="button" class="btn btn-primary mx-2 my-2" data-toggle="modal" data-target="#exampleModal" (click)="fundW(i)" >Fund Wallet</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#withdrawalModal"  (click)="withdrawW(i)">Withdraw</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal" (click)='deleteW(i)'  class="btn btn-danger mx-2">Delete</button>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+<router-outlet></router-outlet>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Fund {{walletName}} Wallet</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <input [(ngModel)]="amountToFund" class="form-control" type="number" placeholder="Enter Amount">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="fundWallet()" *ngIf="amountToFund>0" data-dismiss="modal" id="modalbtn">Fund Wallet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal for withdrawal -->
+<!-- Modal -->
+<div class="modal fade" id="withdrawalModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Withdraw from {{walletName}} Wallet</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <input [(ngModel)]="amountToFund" class="form-control" type="number" placeholder="Enter Amount">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="withdrawWallet()" *ngIf="amountToFund>0" data-dismiss="modal" id="modalbtn">Withdraw</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal for Deleting -->
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete {{walletName}} Wallet</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <p>Are you sure you want to delete?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" (click)="deleteWallet()" data-dismiss="modal" id="modalbtn">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal For New Wallet -->
+<div class="modal fade" id="newWalletModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New Wallet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control my-2" placeholder="Name of Wallet" [(ngModel)]="nameOfWallet">
+        <input type="text" class="form-control my-2" placeholder="Description of Wallet"  [(ngModel)]="descriptionOfWallet">
+        <input type="number" class="form-control my-2" placeholder="Target Amount" [(ngModel)]="targetOfWallet">
+        <button class="btn btn-info my-2 mx-2" (click)='createWallet()'>Create</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+

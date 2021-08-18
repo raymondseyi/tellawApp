@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestModal"  class="btn btn-info">Request Funds</button>
+
+<!-- Modal -->
+<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Request For Funds</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <input [(ngModel)]="accountNumberEntered" (keyup)="checkAccountNumber()" class="form-control" type="number" placeholder="Enter Account Number" >
+        
+        <div>
+            <div *ngIf="this.accountNumberTester">
+            <p class="py-2">{{transferPartnerAccountName}}</p>
+            <input class="form-control my-2" type="text" placeholder="Enter Amount" [(ngModel)]="fundAmount">
+            <input [(ngModel)]="transferDescription" class="form-control my-2" type="text" placeholder="Enter Description">
+            <input class="form-control my-2" type="password" placeholder="Enter Password" [(ngModel)]="passwordEntered">
+            </div>
+            
+        </div>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="request()" *ngIf="fundAmount>0&&this.accountNumberTester" data-dismiss="modal" id="modalbtn">Make Request</button>
+        </div>
+      </div>
+    </div>
+  </div>

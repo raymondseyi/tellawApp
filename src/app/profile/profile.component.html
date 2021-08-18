@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <h4 class="text-center py-2">Profile</h4>
+                <img *ngIf="profilePicture" class="btnimgsize" [src]="proPic"/>
+                <img *ngIf="!profilePicture" class="btnimgsize" src="assets/svg/user.png"/>
+                <label>
+                    <img class="emojiimgsize" src="assets/svg/icons8-pencil-24.png">
+                    <input style="display:none" type="file" accept="image/*" #imageInput (change)="getImage(imageInput)">
+                </label>
+                    <h4 class=" text-center pt-4">{{fullName}} </h4>
+                    <p class="text-center">{{userEmail}}</p>
+                    <p #container class="text-center">{{accountNumber}}</p>
+                    
+
+                        <img ngxClipboard [cbContent]="accountNumber" [container]="container" class="d.inline" (click)="copied()" title="copy" (mouseout)="doneCopying()" class="copyimgsize" src="assets/svg/copy.png"/>
+                        <span class="spanPosition">{{copyVar}}</span>
+        </div>
+        
+    </div>
+    
+</div>
+
+

@@ -1,0 +1,7 @@
+.gradForRequests{
+    background:linear-gradient(to bottom right,rgb(64, 50, 192),rgb(32,20,139));
+    outline: none;
+     border: none;
+    box-shadow: 2px 2px 4px black;
+    
+  }

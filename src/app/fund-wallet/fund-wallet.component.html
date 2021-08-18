@@ -1,0 +1,6 @@
+<div>
+    <p>Fund {{walletName}} Wallet</p>
+    <input class="form-control my-2" type="number" placeholder="amount to fund" [(ngModel)]="amountToFund">
+    <button class="btn btn-success my-2 mx-2" (click)="fundWallet()">Fund Wallet</button>
+    <button class="btn btn-danger my-2 mx-2" (click)="cancelFund()" >Cancel</button>
+</div>

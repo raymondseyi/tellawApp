@@ -1,0 +1,121 @@
+<app-navbar></app-navbar>
+<!-- Container for main account card, welcome message and quick transactions -->
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-4 rounded shadow-sm my-2">
+            <!-- Col for Welcome -->
+                <div class="p-1 rounded-lg m-3 text-dark rounded animate__bounce animate__slower" >
+                    <h4 style="display: inline;" class="px-3 my-1 lead-2">Welcome, {{userFirstName}} </h4>
+                    <img class="emojiimgsize" src="assets/svg/happy.png" alt="">
+                    <!-- <p class="display-6 text-center">Your Account Number is: {{userAccountNumber}} </p>
+                    -->
+                    <h6 class="display-6 pt-4 px-3">Total Balance</h6>
+                    <h5 class="px-3">{{totalAmount|currency:"NGN":'symbol-narrow'}}</h5>
+                    <button class="btn">Dark Mode</button>
+                </div>
+                <!--Col for Welcome ends  -->
+                <!--Col for Main Account -->
+                <div class="gradForRequests p-4 text-white animate__animated animate__rubberBand">
+                    <p class="">Main Account</p>
+                    <h3>Your Balance is {{mainAccountAmount|currency:"NGN":'symbol-narrow'}}</h3>
+                    <h5 class=" pt-4 text-center spaced">{{userAccountNumber}} </h5>
+                   
+                </div>
+                <!--Col for Main Account Ends-->
+                <!--Col for Transactions-->
+                <div class="container-fluid my-2 ">
+                    <div class="row">
+                        <div class="col-4 ">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fundAccountModal" (click)="fundA()" class="gradForRequests btn  my-2 " title="Fund Account">
+                                <img class="btnimgsize" src="assets/svg/008-credit-card.svg"/>
+                            </button>
+                            <h6 class="text-center">Fund Account</h6>
+                        </div>
+                        <div class="col-4">
+                            <button (click)="transferA()" class="btn my-2 gradForRequests " title="Transfer Funds">
+                                <img class="btnimgsize" src="assets/svg/002-bank.svg"/>
+                            </button>
+                            <h6 class="text-center">Payments</h6>
+                        </div>
+                        <div class="col-4">
+                            <button (click)="requestF()" class="btn gradForRequests my-2" title="Request Funds from anyone">
+                                <img class="btnimgsize" src="assets/svg/020-money-bag.svg"/>
+                            </button>
+                            <h6 class="text-center">Requests</h6>
+                        </div>
+                    </div>
+                </div>
+                <!--Col for Transactions End-->
+        </div>
+        <!-- Col 1 Ends -->
+        <!-- Col 2 Begins -->
+        <div class="col-md-4">
+            <!-- Col for Requests -->
+            
+            <div class=" h-50 rounded shadow-sm my-2" >
+                 <h4 class="text-center py-2">Requests</h4>
+                 <a [routerLink]='["/messages"]' class="mx-2">See all Requests</a>
+                 <div (click)="routeToMessages()" class="gradForRequests text-white my-2 rounded mx-2 px-2" *ngFor="let requests of reversedSlicedRequests,let i = index">
+                    <span>{{requests.nameOfRequester}} sent you a request!</span><br>
+             
+                    <span >Details: {{requests.description}}</span>
+                    
+                    <span class="float-right">{{requests.date}} </span><br>
+                    <span> Amount: {{requests.amount|currency:"NGN":'symbol-narrow'}}</span>
+                    <span class="float-right">{{requests.time}}</span>
+                    <br>
+                    <!-- <button class="btn btn-success mb-2" (click)="acceptRequest(i)">Accept</button>
+                    <button class="btn btn-danger mx-2 mb-2" (click)="rejectRequest(i)">Reject</button> -->
+            </div>
+        </div>
+           
+            <!-- Recent Transactions -->
+            <div class=" h-50 my-2  rounded shadow-sm"> 
+                <h4 class="text-center py-2">Recent Transactions</h4>
+                <a [routerLink]='["/history"]' class="mx-2">See all Transactions</a>
+                <div (click)="navigateToTransactions()" class=" text-light gradForRequests my-2 px-2 rounded mx-2" *ngFor="let history of reversedSlicedHistory">
+                    
+                    <!-- <div class="imagelogodiv">
+                    <img class="emojiimgsize" src="assets/svg/happy.png" alt="">
+                    </div> -->
+                    <span>{{history.description}}</span>
+                    <span class="float-right"> {{history.transferAmount|currency:"NGN":'symbol-narrow'}} </span>
+                    <br>
+                    <span class=""> {{history.date}} </span>
+                    <span class="float-right"> {{history.time}} </span> 
+                </div>
+            </div>
+        </div>
+        
+         <!-- Col 3 Begins -->
+         <!-- Profile -->
+         <div class="col-md-4 rounded shadow-sm h-50 d-none d-md-block my-2">
+            <app-profile></app-profile>
+         </div>
+         
+    </div>
+</div>
+<router-outlet></router-outlet>
+
+
+<!-- Modal -->
+<div class="modal fade" id="fundAccountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Fund Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <input [(ngModel)]="fundAmount" class="form-control" type="number" placeholder="Enter Amount">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="fundMe()" *ngIf="fundAmount>0" data-dismiss="modal" id="modalbtn">Fund Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
